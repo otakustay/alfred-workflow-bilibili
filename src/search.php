@@ -28,14 +28,14 @@ function search($kw) {
             $link,
             pq($item)->find('div.t:first')->text(),
             $subtitle,
-            '',
+            'icon.png',
             'yes'        
         );
         $i++;
     }
 
     if (count($wf->results()) == 0) {
-        $wf->result('0', $url, '在bilibili.tv中搜索', $kw, '', 'yes');
+        $wf->result('0', $url, '在bilibili.tv中搜索', $kw, 'icon.png', 'yes');
     }
 
     return $wf->toxml();
