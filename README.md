@@ -18,6 +18,8 @@ Alfred Workflow for bilibili.tv
 
 与B站的搜索一样，你可以输入 **bilibili EVA@动画** 来指定在某个频道下搜索。
 
+![关键词查询](screen-capture/search-keywords.png)
+
 ### 频道查询
 
 工作流内置了多个频道关键词，当畭 **bilibili 频道关键词** 时，会抓取该频道下的第一页的内容，如输入 **bilibili 新番** 会抓取[二次元新番](http://www.bilibili.tv/video/bangumi-two-1.html)下的视频，在B站不调整的前提下，一页有24个视频，按审核通过时间倒序排列。
@@ -51,3 +53,5 @@ Alfred Workflow for bilibili.tv
 - 新番: 新番 - 新番二次元
 - 新番二次元: 新番 - 新番二次元
 - 新番三次元: 新番 - 新番三次元
+
+![频道查询](screen-capture/search-channel.png)
