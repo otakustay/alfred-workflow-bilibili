@@ -83,7 +83,7 @@ function search_query($kw) {
 
     $syntheticalList = $doc->find('li.synthetical');
     foreach ($syntheticalList as $item) {
-        $link = pq($item)->children('a:first')->attr('href');
+        $link = pq($item)->find('a:first')->attr('href');
 
         $wf->result(
             $i,

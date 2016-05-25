@@ -1,5 +1,5 @@
 <?
 require_once('../src/search.php');
-echo search('新番');
+echo search('冰果');
 // http://bilibili.tv/video//
 ?>
