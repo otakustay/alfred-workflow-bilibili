@@ -2,7 +2,7 @@
 Alfred Workflow for bilibili.com
 ========================
 
-本作是一个 [Alfred2](http://www.alfredapp.com/) 的工作流，用于搜索 [bilibili.tv](http://bilibili.tv) 上的视频内容。(也可用于 Alfred 3)
+本作是一个 [Alfred2](http://www.alfredapp.com/) 的工作流，用于搜索 [bilibili.com](http://bilibili.com) 上的视频内容。(也可用于 Alfred 3)
 
 ## 安装方法：
 
@@ -25,7 +25,7 @@ open bilibili.alfredworkflow
 
 ### 频道查询
 
-工作流内置了多个频道关键词，当畭 **bilibili 频道关键词** 时，会抓取该频道下的第一页的内容，如输入 **bilibili 新番** 会抓取[二次元新番](http://www.bilibili.tv/video/bangumi-two-1.html)下的视频，在B站不调整的前提下，一页有24个视频，按审核通过时间倒序排列。
+工作流内置了多个频道关键词，当畭 **bilibili 频道关键词** 时，会抓取该频道下的第一页的内容，如输入 **bilibili 新番** 会抓取[二次元新番](http://www.bilibili.com/video/bangumi-two-1.html)下的视频，在B站不调整的前提下，一页有24个视频，按审核通过时间倒序排列。
 
 频道关键词列表如下：
 
