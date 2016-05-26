@@ -72,7 +72,7 @@
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>本作是一个 [Alfred2](http://www.alfredapp.com/) 的工作流，用于搜索 [bilibili.tv](http://bilibili.tv) 上的视频内容。(也可用于 Alfred 3)</string>
 	<key>uidata</key>
 	<dict>
 		<key>7DD3BDE5-A157-42E5-9376-F681FB50A4EE</key>

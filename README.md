@@ -1,22 +1,25 @@
-Alfred Workflow for bilibili.tv
+
+Alfred Workflow for bilibili.com
 ========================
 
-本作是一个[Alfred2](http://www.alfredapp.com/)的工作流，用于搜索[bilibili.tv](http://bilibili.tv)上的视频内容。
+本作是一个 [Alfred2](http://www.alfredapp.com/) 的工作流，用于搜索 [bilibili.tv](http://bilibili.tv) 上的视频内容。(也可用于 Alfred 3)
 
 ## 安装方法：
 
-    sh build.sh
-    open bilibili.alfredworkflow
+```shell
+bash build.sh
+open bilibili.alfredworkflow
+```
 
 ## 使用方法：
 
-打开Alfred2后，输入关键字 **bilibili** 即可开始搜索，搜索分为2种模式。
+打开 Alfred 后，输入关键字 **bilibili** 即可开始搜索，搜索分为2种模式。
 
 ### 关键词查询
 
-输入 **bilibili 关键词** 即调用bilibili.tv的查询接口，出于国内网络速度和B站服务器带宽的考虑，一次搜索只返回10个视频，默认以 **综合** 进行排序。
+输入 **bilibili 关键词** 即调用bilibili.com的查询接口，出于国内网络速度和B站服务器带宽的考虑，所以搜索可能较慢（还有因为解析裁减了图片），默认以 **综合** 进行排序。（后期不定时可能会改进，看心情）
 
-与B站的搜索一样，你可以输入 **bilibili EVA@动画** 来指定在某个频道下搜索。
+与B站的搜索一样，你可以输入 **bilibili 冰果@动画** 来指定在某个频道下搜索。
 
 ![关键词查询](screen-capture/search-keywords.png)
 
@@ -55,3 +58,9 @@ Alfred Workflow for bilibili.tv
 - 新番三次元: 新番 - 新番三次元
 
 ![频道查询](screen-capture/search-channel.png)
+
+## 备注：
+
+目前所有频道并未全部测试。
+
+因为后续 B 站可能会更改页面结构，所以并不能保证本 Workflow 一直可用。
