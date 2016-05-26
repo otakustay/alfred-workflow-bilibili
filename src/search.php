@@ -1,6 +1,7 @@
 <?
 require_once('phpQuery.php');
 require_once('workflows.php');
+require_once('image.php');
 
 $channels = array(
     'MAD' => 'douga-mad-1.html',
@@ -32,36 +33,35 @@ $channels = array(
     '新番三次元' => 'bangumi-three-1.html'
 );
 
+$thumbnail_dir = '/tmp/alfred-workflow-bilibili';
+
 function search_channel($channel) {
     $wf = new Workflows();
-    $url = 'http://www.bilibili.tv/video/'.$channel;
+    $url = 'http://www.bilibili.com/video/'.$channel;
     $content = $wf->request($url, array(CURLOPT_ENCODING => 1));
     $doc = phpQuery::newDocumentHTML($content);
-    $list = $doc->find('li.l1');
+    $list = $doc->find('div.l-item');
+
+    initDir();
 
     $i = 0;
     foreach ($list as $item) {
         $item = pq($item);
-        $link = $item->children('a.title')->attr('href');
+        $link = $item->children('a:first')->attr('href');
         if (strpos($link, 'http') !== 0) {
-            $link = 'http://www.bilibili.tv'.$link;
+            $link = 'http://www.bilibili.com'.$link;
         }
-        $title = $item->children('a.title')->text();
-        $author = $item->find('a.up')->text();
-        $view = $item->find('a.gk > b')->text();
-        $comment = $item->find('a.pl > b')->text();
-        $bullet = $item->find('a.dm > b')->text();
-        $save = $item->find('a.sc > b')->text();
-        $date = preg_split('/UP:/', $item->find('div.date')->text());
-        $date = $date[1];
-        $subtitle = 'UP主:'.$author.' 播放:'.$view.' 评论:'.$comment.' 弹幕:'.$bullet.' 收藏:'.$save.' 日期:'.$date;
+        $title = $item->find('a.title')->attr('title');
+        $subtitle = $item->find('div.v-desc')->text();
+        $img = $item->find('a:first img')->attr("data-img");
 
         $wf->result(
             $i,
             $link,
-            $title,
-            $subtitle,
-            'icon.png',
+            trim($title),
+            trim($subtitle),
+            /*'icon.png',*/
+            saveAndReturnImg($img),
             'yes'        
         );
         $i++;
@@ -72,38 +72,58 @@ function search_channel($channel) {
 
 function search_query($kw) {
     $wf = new Workflows();
-    $url = 'http://www.bilibili.tv/search?keyword='.urlencode($kw).'&orderby=&formsubmit=';
+    $url = 'http://search.bilibili.com/all?keyword='.urlencode($kw);
     $content = $wf->request($url, array(CURLOPT_ENCODING => 1));
     $doc = phpQuery::newDocumentHTML($content);
-    $list = $doc->find('li.l');
+
+    initDir();
 
     $i = 0;
-    foreach ($list as $item) {
-        $link = pq($item)->children('a:first')->attr('href');
-        if (strpos($link, 'http') !== 0) {
-            $link = 'http://www.bilibili.tv'.$link;
-        }
-        $info = pq($item)->find('div.info > i');
-        $author = pq($item)->find('a.upper:first')->text();
-        $view = $info->eq(0)->text();
-        $comment = $info->eq(1)->text();
-        $bullet = $info->eq(2)->text();
-        $save = $info->eq(3)->text();
-        $date = $info->eq(4)->text();
-        $subtitle = 'UP主:'.$author.' 播放:'.$view.' 评论:'.$comment.' 弹幕:'.$bullet.' 收藏:'.$save.' 日期:'.$date;
+    $syntheticalList = $doc->find('li.synthetical');
+    foreach ($syntheticalList as $item) {
+        $item = pq($item);
+        $link = $item->find('a:first')->attr('href');
+        $img = $item->find('a:first img')->attr('src');
+
         $wf->result(
             $i,
             $link,
-            pq($item)->find('div.t:first')->text(),
+            trim($item->find('a.title')->attr('title')),
+            trim($item->find('div.des')->text()),
+            saveAndReturnImg($img),
+            'yes'
+        );
+        $i++;
+    }
+
+    $list = $doc->find('li.video');
+    foreach ($list as $item) {
+        $item = pq($item);
+        $link = $item->children('a:first')->attr('href');
+        if (strpos($link, 'http') !== 0) {
+            $link = 'http://www.bilibili.com'.$link;
+        }
+        $tags = $item->find('div.tags')->eq(0);
+        $view = pq($tags)->find('span')->eq(0)->text();
+        $bullet = pq($tags)->find('span')->eq(1)->text();
+        $date = pq($tags)->find('span')->eq(2)->text();
+        $author = pq($tags)->find('span')->eq(3)->text();
+        $img = $item->find('a:first img')->attr('src');
+
+        $subtitle = 'UP主:'.trim($author).'   观看:'.trim($view).'   弹幕:'.trim($bullet).'   上传时间:'.trim($date);
+        $wf->result(
+            $i,
+            $link,
+            trim($item->find('div.headline a.title')->attr('title')),
             $subtitle,
-            'icon.png',
+            saveAndReturnImg($img),
             'yes'        
         );
         $i++;
     }
 
     if (count($wf->results()) == 0) {
-        $wf->result('0', $url, '在bilibili.tv中搜索', $kw, 'icon.png', 'yes');
+        $wf->result('0', $url, '在bilibili.com中搜索', $kw, 'icon.png', 'yes');
     }
 
     return $wf->toxml();
