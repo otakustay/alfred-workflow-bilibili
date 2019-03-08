@@ -15,6 +15,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 	</dict>
@@ -31,10 +33,16 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>36</integer>
 				<key>script</key>
 				<string>open "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -42,22 +50,42 @@
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>A4037ABB-9EC7-4713-B157-32D4325D7536</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>escaping</key>
 				<integer>36</integer>
 				<key>keyword</key>
-				<string>bilibili</string>
+				<string>bl</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Searching for your video</string>
 				<key>script</key>
 				<string>require_once('search.php'); $kw = "{query}"; echo search($kw);</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
-				<string>Search in bilibili.tv</string>
+				<string>Search in bilibili.com</string>
 				<key>title</key>
 				<string>Bilibili search</string>
 				<key>type</key>
@@ -69,21 +97,27 @@
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>7DD3BDE5-A157-42E5-9376-F681FB50A4EE</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>本作是一个 [Alfred2](http://www.alfredapp.com/) 的工作流，用于搜索 [bilibili.tv](http://bilibili.tv) 上的视频内容。(也可用于 Alfred 3)</string>
+	<string></string>
 	<key>uidata</key>
 	<dict>
 		<key>7DD3BDE5-A157-42E5-9376-F681FB50A4EE</key>
 		<dict>
+			<key>xpos</key>
+			<integer>140</integer>
 			<key>ypos</key>
-			<real>70</real>
+			<integer>220</integer>
 		</dict>
 		<key>A4037ABB-9EC7-4713-B157-32D4325D7536</key>
 		<dict>
+			<key>xpos</key>
+			<integer>460</integer>
 			<key>ypos</key>
-			<real>10</real>
+			<integer>220</integer>
 		</dict>
 	</dict>
 	<key>webaddress</key>
